@@ -1,6 +1,6 @@
-CREATE SCHEMA api;
 
-CREATE TABLE api.tracks (
+
+CREATE TABLE tracks (
     id SERIAL PRIMARY KEY,
     title TEXT,
     artist TEXT,
@@ -11,7 +11,7 @@ CREATE TABLE api.tracks (
     unique(title, artist,  album_id)
 );
 
-CREATE TABLE api.albums (
+CREATE TABLE albums (
     id SERIAL PRIMARY KEY,
     title TEXT UNIQUE NOT NULL,
     game_source TEXT,
@@ -21,26 +21,26 @@ CREATE TABLE api.albums (
     updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
 );
 
-CREATE TABLE api.users (
+CREATE TABLE users (
     id SERIAL PRIMARY KEY,
     name TEXT,
     email TEXT,
     pass TEXT
 );
 
-CREATE TABLE api.playlists (
+CREATE TABLE playlists (
     id SERIAL PRIMARY KEY,
     name TEXT NOT NULL,
     owner_id INTEGER NOT NULL
 );
 
-CREATE TABLE api.tracks_playlist (
+CREATE TABLE tracks_playlist (
     id SERIAL PRIMARY KEY,
     track_id INTEGER NOT NULL,
     playlist_id INTEGER NOT NULL
 );
 
-CREATE TABLE api.recently_played (
+CREATE TABLE recently_played (
     id SERIAL PRIMARY KEY,
     track_id INTEGER NOT NULL,
     user_id INTEGER NOT NULL,
@@ -48,9 +48,9 @@ CREATE TABLE api.recently_played (
 );
 
 
-ALTER TABLE api.tracks ADD CONSTRAINT track_album_constraint FOREIGN KEY (album_id) REFERENCES api.albums(id);
-ALTER TABLE api.tracks_playlist ADD CONSTRAINT track_playlist_pid FOREIGN KEY (playlist_id) REFERENCES api.playlists(id);
-ALTER TABLE api.tracks_playlist ADD CONSTRAINT track_playlist_tid FOREIGN KEY (track_id) REFERENCES api.tracks(id);
+ALTER TABLE tracks ADD CONSTRAINT track_album_constraint FOREIGN KEY (album_id) REFERENCES albums(id);
+ALTER TABLE tracks_playlist ADD CONSTRAINT track_playlist_pid FOREIGN KEY (playlist_id) REFERENCES playlists(id);
+ALTER TABLE tracks_playlist ADD CONSTRAINT track_playlist_tid FOREIGN KEY (track_id) REFERENCES tracks(id);
 
 
 
