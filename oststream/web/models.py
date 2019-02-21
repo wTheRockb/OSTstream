@@ -1,14 +1,7 @@
+from django.contrib.auth.models import User
 from django.db import models
 import json
 from django.forms.models import model_to_dict
-
-
-class User(models.Model):
-    name = models.CharField(max_length=200)
-    # password todo?
-
-    def __str__(self):
-        return json.dumps(model_to_dict(self))
 
 
 class GameSeries(models.Model):

@@ -32,8 +32,6 @@ def upsert_album(path):
                 upsert_track((os.path.join(root, f)), album_id)
 
 def upsert_track(path, album_id):
-    print "track"
-    print path
     cur = conn.cursor()
     id3 = Reader(path)
     title = Reader.getValue(id3, "title")
