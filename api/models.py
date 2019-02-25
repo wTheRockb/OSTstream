@@ -1,7 +1,16 @@
-from django.contrib.auth.models import User
 from django.db import models
 import json
+
+from django.contrib.auth.models import AbstractUser
 from django.forms.models import model_to_dict
+
+
+class User(AbstractUser):
+    username = models.CharField(max_length=200, default='username', unique=True)
+    password = models.CharField(max_length=200, default='password')
+
+    def __str__(self):
+        return json.dumps(model_to_dict(self))
 
 
 class GameSeries(models.Model):
@@ -15,6 +24,7 @@ class Game(models.Model):
     title = models.CharField(max_length=200)
     publisher = models.CharField(max_length=200)
     series = models.ForeignKey(GameSeries, on_delete=models.SET_NULL, null=True)
+    publish_date = models.DateTimeField('date published', null=True)
 
     def __str__(self):
         return json.dumps(model_to_dict(self))
@@ -56,6 +66,5 @@ class PlaylistMembership(models.Model):
 
     def __str__(self):
         return json.dumps(model_to_dict(self))
-
 
 # TODO: RecentlyPlayed / Play history

@@ -1,10 +1,11 @@
+# todo convert to python 3 : https://github.com/teragonaudio/id3reader
+
 import os
-from oststream.oststream import db
 from util.id3reader import Reader
 
 conn = db.connection()
 
-def upsert_album(path): 
+def upsert_album(path):
     print "album"
     print path
     cur = conn.cursor()
@@ -46,4 +47,3 @@ if __name__ == '__main__':
         if root == "/Users/rock/Dropbox/Public/OST/":
             for f in dirs:
                 upsert_album(os.path.join(root, f))
-                

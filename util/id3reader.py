@@ -80,7 +80,7 @@ _genres = [
     'Terror', 'Indie', 'BritPop', 'Negerpunk', 'Polsk Punk', 'Beat', 'Christian Gangsta Rap', 'Heavy Metal', 'Black Metal', 'Crossover',
     # 140-147
     'Contemporary Christian', 'Christian Rock', 'Merengue', 'Salsa', 'Thrash Metal', 'Anime', 'JPop', 'Synthpop'
-    ]
+]
 
 class Id3Error(Exception):
     """ An exception caused by id3reader properly handling a bad ID3 tag.
