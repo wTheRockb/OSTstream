@@ -13,10 +13,33 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+from django.conf.urls import url
 from django.contrib import admin
 from django.urls import include, path
+from rest_framework import routers, serializers, viewsets
 
+from api.models import GameSeries
+
+
+# REST FRAMEWORK
+class GameSeriesSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = GameSeries
+        fields = ['title']
+
+
+class GameSeriesViewSet(viewsets.ModelViewSet):
+    queryset = GameSeries.objects.all()
+    serializer_class = GameSeriesSerializer
+
+
+router = routers.DefaultRouter()
+router.register(r'game_series', GameSeriesViewSet)
+
+# URLS
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include('api.urls')),
+    url(r'^', include(router.urls)),
+    url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework'))
 ]

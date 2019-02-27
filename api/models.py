@@ -9,15 +9,15 @@ class User(AbstractUser):
     username = models.CharField(max_length=200, default='username', unique=True)
     password = models.CharField(max_length=200, default='password')
 
-    def __str__(self):
-        return json.dumps(model_to_dict(self))
+    # def __str__(self):
+    #     return json.dumps(model_to_dict(self))
 
 
 class GameSeries(models.Model):
     title = models.CharField(max_length=200)
 
-    def __str__(self):
-        return json.dumps(model_to_dict(self))
+    # def __str__(self):
+    #     return json.dumps(model_to_dict(self))
 
 
 class Game(models.Model):
@@ -26,8 +26,8 @@ class Game(models.Model):
     series = models.ForeignKey(GameSeries, on_delete=models.SET_NULL, null=True)
     publish_date = models.DateTimeField('date published', null=True)
 
-    def __str__(self):
-        return json.dumps(model_to_dict(self))
+    # def __str__(self):
+    #     return json.dumps(model_to_dict(self))
 
 
 class Album(models.Model):
@@ -37,8 +37,8 @@ class Album(models.Model):
     # Consider making this slugfield https://docs.djangoproject.com/en/2.1/ref/models/fields/#slugfield
     image_path = models.CharField(max_length=200)
 
-    def __str__(self):
-        return json.dumps(model_to_dict(self))
+    # def __str__(self):
+    #     return json.dumps(model_to_dict(self))
 
 
 class Track(models.Model):
@@ -46,8 +46,8 @@ class Track(models.Model):
     artist = models.CharField(max_length=200)
     album_id = models.ForeignKey(Album, on_delete=models.CASCADE)
 
-    def __str__(self):
-        return json.dumps(model_to_dict(self))
+    # def __str__(self):
+    #     return json.dumps(model_to_dict(self))
 
 
 class Playlist(models.Model):
@@ -55,8 +55,8 @@ class Playlist(models.Model):
     songs = models.ManyToManyField(Track, through='PlaylistMembership')
     owner_id = models.ForeignKey(User, on_delete=models.CASCADE)
 
-    def __str__(self):
-        return json.dumps(model_to_dict(self))
+    # def __str__(self):
+    #     return json.dumps(model_to_dict(self))
 
 
 class PlaylistMembership(models.Model):
@@ -64,7 +64,7 @@ class PlaylistMembership(models.Model):
     playlist_id = models.ForeignKey(Playlist, on_delete=models.CASCADE)
     date_added = models.DateField()
 
-    def __str__(self):
-        return json.dumps(model_to_dict(self))
+    # def __str__(self):
+    #     return json.dumps(model_to_dict(self))
 
 # TODO: RecentlyPlayed / Play history
