@@ -1,7 +1,7 @@
 import * as React from 'react';
 import './App.css';
+import {DisplayAlbum} from "./components/DisplayAlbum/DisplayAlbum";
 
-import logo from './logo.svg';
 
 class App extends React.Component {
   public render() {
@@ -14,7 +14,7 @@ class App extends React.Component {
         <p className="App-intro">
           To get started, edit <code>src/App.tsx</code> and BLAp to reload.
         </p> */}
-        
+        {DisplayAlbum({name: "name1", game_series: "gs1", album_cover_uri:"uri"})}
       </div>
     );
   }
