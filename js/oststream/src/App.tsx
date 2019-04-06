@@ -1,6 +1,6 @@
 import * as React from 'react';
 import './App.css';
-import {DisplayAlbum} from "./components/DisplayAlbum/DisplayAlbum";
+import {RenderAlbums} from "./components/Albums/Albums";
 
 
 class App extends React.Component {
@@ -14,7 +14,14 @@ class App extends React.Component {
         <p className="App-intro">
           To get started, edit <code>src/App.tsx</code> and BLAp to reload.
         </p> */}
-        {DisplayAlbum({name: "name1", game_series: "gs1", album_cover_uri:"uri"})}
+        {RenderAlbums({
+          albums: [{
+            id: 1,
+            name: "name1",
+            game_series: "gs1",
+            album_cover_uri: "uri"
+          }]
+        })}
       </div>
     );
   }

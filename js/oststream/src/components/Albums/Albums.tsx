@@ -1,20 +1,20 @@
-import {DisplayAlbum, DisplayAlbumProps} from "../DisplayAlbum/DisplayAlbum";
+import {RenderDisplayAlbum, DisplayAlbumProps} from "../DisplayAlbum/RenderDisplayAlbum";
 import * as React from "react";
 
 
 interface AlbumsProps {
-  albums: DisplayAlbumProps[];
+  readonly albums: DisplayAlbumProps[];
 }
 
 
 export const RenderAlbums: React.FunctionComponent<AlbumsProps> = (props: AlbumsProps) => {
   return(
     <div className="Albums">
-      <p> "hi" </p>
-      {props.albums.forEach( album =>
-        DisplayAlbum(album)
+      {props.albums.map( (album: DisplayAlbumProps) =>
+        <div key={album.id}>
+          {RenderDisplayAlbum(album)}
+        </div>
       )}
-
     </div>
   )
 };
