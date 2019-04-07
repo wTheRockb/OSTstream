@@ -32,6 +32,4 @@
     "jest",
     "src/setupTests.ts"
   ]
-//  "include": ["js/**/*.ts"]
-
 }

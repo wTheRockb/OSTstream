@@ -18,7 +18,7 @@ from django.contrib import admin
 from django.urls import include, path
 from rest_framework import routers, serializers, viewsets
 
-from api.models import GameSeries
+from api.models import GameSeries, Album
 
 
 # REST FRAMEWORK
@@ -33,8 +33,20 @@ class GameSeriesViewSet(viewsets.ModelViewSet):
     serializer_class = GameSeriesSerializer
 
 
+class AlbumSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Album
+        fields = ['title']
+
+
+class AlbumViewSet(viewsets.ModelViewSet):
+    queryset = Album.objects.all()
+    serializer_class = AlbumSerializer
+
+
 router = routers.DefaultRouter()
 router.register(r'game_series', GameSeriesViewSet)
+router.register(r'albums', AlbumViewSet)
 
 # URLS
 urlpatterns = [

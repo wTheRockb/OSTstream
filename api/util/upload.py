@@ -43,7 +43,8 @@ def upsert_track(path, album):
 
 
 if __name__ == '__main__':
-    for root, dirs, files in os.walk("/Users/rock/Dropbox/Public/OST/", topdown=False):
-        if root == "/Users/rock/Dropbox/Public/OST/":
+    root_path = "/Users/woodybutler/Dropbox/Public/OST/" ## todo parametrize this
+    for root, dirs, files in os.walk(root_path, topdown=False):
+        if root == root_path:
             for f in dirs:
                 upsert_album(os.path.join(root, f))
