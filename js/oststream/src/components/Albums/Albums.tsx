@@ -1,16 +1,42 @@
 import {RenderDisplayAlbum, DisplayAlbumProps} from "../DisplayAlbum/RenderDisplayAlbum";
-import * as React from "react";
+import React, { useState, useEffect } from 'react';
 
 
-interface AlbumsProps {
-  readonly albums: DisplayAlbumProps[];
-}
+const axios = require('axios').default;
+
+// interface AlbumsProps {
+//   readonly albums: DisplayAlbumProps[];
+// }
 
 
-export const RenderAlbums: React.FunctionComponent<AlbumsProps> = (props: AlbumsProps) => {
+export const RenderAlbums: React.FunctionComponent<{}> = () => {
+
+  // const [data, setData] = useState({ albums: [] });
+
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     const result = await axios(
+  //       'http://127.0.0.1:8000/albums/',
+  //     );
+  //     setData(result.data);
+  //   };
+  //   fetchData();
+  // }, []);
+
+  const [data, setData] = useState({ albums: [] });
+  useEffect(() => {
+    const fetchData = async () => {
+      const result = await axios(
+        'http://127.0.0.1:8000/albums/',
+      );
+      setData(result.data);
+    };
+    fetchData();
+  }, []);
+
   return(
     <div className="Albums">
-      {props.albums.map( (album: DisplayAlbumProps) =>
+      {data.albums.map( (album: DisplayAlbumProps) =>
         <div key={album.id}>
           {RenderDisplayAlbum(album)}
         </div>

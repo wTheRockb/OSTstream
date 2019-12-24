@@ -7,14 +7,7 @@ class App extends React.Component {
   public render() {
     return (
       <div className="App">
-        {RenderAlbums({
-          albums: [{
-            id: 1,
-            name: "name1",
-            game_series: "gs1",
-            album_cover_uri: "uri"
-          }]
-        })}
+        {<RenderAlbums/>}
       </div>
     );
   }
