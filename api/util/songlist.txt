@@ -1,0 +1,5 @@
+https://youtu.be/QWhhMxrX-Us
+https://youtu.be/B3LmkkWtBAM
+https://youtu.be/9OUW_VSppbY
+https://youtu.be/NIWyZmFSep0
+# youtube-dl  -x --audio-quality 0 --embed-thumbnail -a songlist.txt
