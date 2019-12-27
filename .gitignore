@@ -2,3 +2,4 @@
 *.pyc
 /venv/
 js/node_modules/*
+*.DS_Store

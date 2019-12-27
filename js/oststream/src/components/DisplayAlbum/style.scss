@@ -2,4 +2,14 @@
 .displayAlbum {
   height: 200px;
   width: 200px;
+  background-color: powderblue;
+  font-size: 14px;
+  margin: 20px;
+  display: inline-block;
+  vertical-align: top;
+
+  &__cover {
+    width: 60%;
+    height: 60%;
+  }
 }
