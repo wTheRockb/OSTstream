@@ -1,14 +1,10 @@
-
-html {
+#root {
     height: 100%;
 }
 
-body {
-    height: 100%;
-}
-
-.App {
+.App { // TODO how do I get this to actually apply?
     height: 100%;
     vertical-align: top;
     text-align: left;
+    font-family: Arial, Helvetica, sans-serif!important;
 }
