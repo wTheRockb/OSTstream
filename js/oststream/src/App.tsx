@@ -1,5 +1,6 @@
 import * as React from 'react';
 import {RenderAlbums} from "./components/Albums/Albums";
+import './style.scss'
 
 
 class App extends React.Component {
