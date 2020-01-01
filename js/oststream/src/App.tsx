@@ -1,16 +1,12 @@
 import * as React from 'react';
-import {RenderAlbums} from "./components/Albums/Albums";
 import './style.scss'
+import Navbar from './components/Navbar';
 
 
-class App extends React.Component {
-  public render() {
-    return (
-      <div className="App">
-        {<RenderAlbums/>}
-      </div>
-    );
-  }
+ const App = () => {
+  return (
+    <Navbar/>
+   )
 }
 
 export default App;
