@@ -1,0 +1,19 @@
+.navbar__ {
+  &root {
+    display: flex;
+    height: 100%;
+  }
+
+  &inner {
+    width: 25%;
+    background-color: #333333;
+  }
+
+  &nav-link {
+    color: #e0e0e0;
+  }
+
+  &active-link {
+    color: #ffffff;
+  }
+}
