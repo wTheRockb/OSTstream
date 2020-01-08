@@ -8,7 +8,8 @@ import {
   useParams
 } from "react-router-dom";
 import { RenderAlbums } from "../Albums/Albums";
-import { AlbumCloseUp } from "../AlbumCloseUp/AlbumCloseUp";
+import AlbumCloseUp from "../AlbumCloseUp/AlbumCloseUp";
+import { isUndefined } from "util";
 
 const Navbar = () => {
   return (
@@ -59,7 +60,7 @@ const Navbar = () => {
             renders the first one that matches the current URL. */}
         <Switch>
           <Route path="/albums/:id">
-            <albumCloseUp />
+            <AlbumCloseUpContent />
           </Route>
           <Route path="/albums">
             <RenderAlbums />
@@ -82,9 +83,14 @@ const Navbar = () => {
   );
 };
 
-const albumCloseUp = () => {
+const AlbumCloseUpContent = () => {
   let { id } = useParams();
-  return <AlbumCloseUp albumId={id} />;
+
+  if (isUndefined(id) || Number.isNaN(parseInt(id))) {
+    return <h1>Error, unparseable album id</h1>;
+  } else {
+    return <AlbumCloseUp albumId={parseInt(id)} />;
+  }
 };
 
 const Home = () => {

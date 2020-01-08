@@ -10,7 +10,7 @@ export const RenderAlbums: React.FunctionComponent<{}> = () => {
 
 
   const [albums, setAlbums] = useState([]);
-  useEffect(() => {
+  useEffect(() => { // TODO change to backendapiclient call
     const fetchData = async () => {
       const result = await axios(
         'http://127.0.0.1:8000/albums/',

@@ -13,7 +13,6 @@ export const RenderDisplayAlbum: React.FunctionComponent<DisplayAlbumProps> = (p
     <div className="displayAlbum">
       <img src={props.album_cover_uri} className="displayAlbum__cover"/>
       <div className="displayAlbum__title"> {props.title}</div>
-      {/* <div className="displayAlbum__gameSeries">Game Series: {props.game_series}</div> */}
       <img src={props.album_cover_uri}/>
     </div>
   )
