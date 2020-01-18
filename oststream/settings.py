@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'corsheaders',
 ]
 
+## TODO limit this for security
 CORS_ORIGIN_ALLOW_ALL = True
 
 MIDDLEWARE = [

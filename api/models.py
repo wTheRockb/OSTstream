@@ -19,6 +19,7 @@ class Game(models.Model):
 
 
 class Album(models.Model):
+    id = models.IntegerField(unique=True, primary_key=True)
     title = models.CharField(max_length=200, unique=True)
     game_id = models.ForeignKey(Game, on_delete=models.CASCADE, null=True)
     publish_date = models.DateTimeField('date published', null=True)

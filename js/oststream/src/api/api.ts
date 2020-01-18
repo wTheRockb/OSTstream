@@ -4,24 +4,23 @@ import { DEFAULT_AXIOS_CONFIG } from "./index";
 import { ApiClient } from "../types/ApiClient";
 import { AlbumDetails } from "src/types/AlbumDetails";
 
+const ROOT_BACKEND_PATH = "http://127.0.0.1:8000";
 export const PATHS = Object.freeze({
-  GET_ALBUMS: "/api/albums"
+  GET_ALBUMS: "albums"
 });
 
-const getAlbums = (): Promise<Album[]> => {
+const getAlbums = async (): Promise<Album[]> => {
   const url = `/${PATHS.GET_ALBUMS}`;
 
-  return axios
-    .get(url, DEFAULT_AXIOS_CONFIG)
-    .then(response => response.data.data as Album[]);
+  const response = await axios.get(url, DEFAULT_AXIOS_CONFIG);
+  return response.data as Album[];
 };
 
-const getAlbumDetails = (albumId: number): Promise<AlbumDetails> => {
-  const url = `/${PATHS.GET_ALBUMS}/${albumId}}`;
+const getAlbumDetails = async (albumId: number): Promise<AlbumDetails> => {
+  const url = `${ROOT_BACKEND_PATH}/${PATHS.GET_ALBUMS}/${albumId}`;
 
-  return axios
-    .get(url, DEFAULT_AXIOS_CONFIG)
-    .then(response => response.data.data as AlbumDetails);
+  const response = await axios.get(url, DEFAULT_AXIOS_CONFIG);
+  return response.data as AlbumDetails;
 };
 
 const BackendApiClient: ApiClient = Object.freeze({

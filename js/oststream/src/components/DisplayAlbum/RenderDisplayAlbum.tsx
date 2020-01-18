@@ -1,19 +1,15 @@
-import * as React from 'react';
-import './style.scss'
+import * as React from "react";
+import "./style.scss";
+import { Album } from "src/types/Album";
 
-export interface DisplayAlbumProps {
-  readonly id: number;
-  readonly title: string;
-  readonly album_cover_uri: string;
-  readonly game_series: string;
-}
-
-export const RenderDisplayAlbum: React.FunctionComponent<DisplayAlbumProps> = (props: DisplayAlbumProps) => {
+const RenderDisplayAlbum: React.FunctionComponent<Album> = (props: Album) => {
   return (
     <div className="displayAlbum">
-      <img src={props.album_cover_uri} className="displayAlbum__cover"/>
+      <img src={props.imageUri} className="displayAlbum__cover" />
       <div className="displayAlbum__title"> {props.title}</div>
-      <img src={props.album_cover_uri}/>
+      <img src={props.imageUri} />
     </div>
-  )
+  );
 };
+
+export default RenderDisplayAlbum;
