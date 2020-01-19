@@ -16,42 +16,12 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 from django.urls import include, path
-from rest_framework import routers, serializers, viewsets
-
-from api.models import GameSeries, Album
 
 
-# REST FRAMEWORK
-class GameSeriesSerializer(serializers.HyperlinkedModelSerializer):
-    class Meta:
-        model = GameSeries
-        fields = ['title']
-
-
-class GameSeriesViewSet(viewsets.ModelViewSet):
-    queryset = GameSeries.objects.all()
-    serializer_class = GameSeriesSerializer
-
-
-class AlbumSerializer(serializers.HyperlinkedModelSerializer):
-    class Meta:
-        model = Album
-        fields = ['title']
-
-
-class AlbumViewSet(viewsets.ModelViewSet):
-    queryset = Album.objects.all()
-    serializer_class = AlbumSerializer
-
-
-router = routers.DefaultRouter()
-router.register(r'game_series', GameSeriesViewSet)
-router.register(r'albums', AlbumViewSet)
 
 # URLS
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include('api.urls')),
-    url(r'^', include(router.urls)),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework'))
 ]

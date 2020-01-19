@@ -37,7 +37,7 @@ const AlbumCloseUp: React.FC<AlbumCloseUpProps> = (
   return (
     <div className="album-close-up__root">
       <div>
-        <RenderDisplayAlbum {...albumData} />
+        <RenderDisplayAlbum {...albumData.album} />
       </div>
     </div>
   );
