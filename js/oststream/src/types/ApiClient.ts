@@ -3,5 +3,5 @@ import { AlbumDetails } from "./AlbumDetails";
 
 export interface ApiClient {
   readonly getAlbums: () => Promise<Album[]>;
-  readonly getAlbumDetails: (albumId: number) => Promise<AlbumDetails>;
+  readonly getAlbumCloseUp: (albumId: number) => Promise<AlbumDetails>;
 }

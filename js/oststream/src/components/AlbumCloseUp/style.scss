@@ -1,0 +1,18 @@
+@import '../../style.scss';
+
+.album-close-up__ {
+  &root {
+    background-color: #666666;
+    color: white;
+    min-height: $content-height;
+    width: $content-width;
+  }
+
+  &album-cover {
+      margin-left: 60px;
+      margin-top: 60px;
+      height: 300px;
+      width: 300px;
+
+  }
+}

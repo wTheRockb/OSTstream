@@ -7,7 +7,6 @@ const RenderDisplayAlbum: React.FunctionComponent<Album> = (props: Album) => {
     <div className="displayAlbum">
       <img src={props.imageUri} className="displayAlbum__cover" />
       <div className="displayAlbum__title"> {props.title}</div>
-      <img src={props.imageUri} />
     </div>
   );
 };
