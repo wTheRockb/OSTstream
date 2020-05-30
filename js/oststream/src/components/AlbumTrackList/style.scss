@@ -1,0 +1,20 @@
+@import "../../style.scss";
+
+
+
+.album-track-list__ {
+    
+    &header-SONG {
+        width: 55%;
+    }
+
+    &header-ARTIST {
+        width: 30%;
+    }
+
+    &header-TIME {
+        width: 15%;
+    }
+
+
+}
