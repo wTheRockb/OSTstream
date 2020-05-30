@@ -3,6 +3,7 @@ import "./style.scss";
 import { useState, useEffect } from "react";
 import BackendApiClient from "src/api/api";
 import { AlbumDetails } from "src/types/AlbumDetails";
+import { AlbumTrackList } from "src/components/AlbumTrackList/AlbumTrackList"
 
 
 interface AlbumCloseUpProps {
@@ -40,7 +41,9 @@ const AlbumCloseUp: React.FC<AlbumCloseUpProps> = (
           {albumData.title}
         </div>
       </div>
-      <div className="album-close-up__track-holder"></div>
+      <div className="album-close-up__track-holder">
+      <AlbumTrackList tracks={albumData.tracks}/>
+      </div>
     </div>
   );
 };
