@@ -3,7 +3,7 @@ import "./style.scss";
 import { useState, useEffect } from "react";
 import BackendApiClient from "src/api/api";
 import { AlbumDetails } from "src/types/AlbumDetails";
-
+import { AlbumTrackList } from "src/components/AlbumTrackList/AlbumTrackList";
 
 interface AlbumCloseUpProps {
   albumId: number;
@@ -15,7 +15,7 @@ const initialAlbumData: AlbumDetails = {
   gameId: 0,
   publishDate: "",
   imageUri: "",
-  tracks: []
+  tracks: [],
 };
 
 const AlbumCloseUp: React.FC<AlbumCloseUpProps> = (
@@ -30,17 +30,21 @@ const AlbumCloseUp: React.FC<AlbumCloseUpProps> = (
     };
     fetchData();
   }, []);
-  console.log(albumData);
 
   return (
     <div className="album-close-up__root">
-      <div className="album-close-up__title-holder">
-        <img src={albumData.imageUri} className="album-close-up__album-cover" />
-        <div className="album-close-up__album-title">
-          {albumData.title}
+      <div className="album-close-up__content">
+        <div className="album-close-up__title-holder">
+          <img
+            src={albumData.imageUri}
+            className="album-close-up__album-cover"
+          />
+          <div className="album-close-up__album-title">{albumData.title}</div>
+        </div>
+        <div className="album-close-up__track-holder">
+          <AlbumTrackList tracks={albumData.tracks} />
         </div>
       </div>
-      <div className="album-close-up__track-holder"></div>
     </div>
   );
 };

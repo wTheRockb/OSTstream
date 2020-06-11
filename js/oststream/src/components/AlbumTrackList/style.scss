@@ -1,0 +1,33 @@
+@import "../../style.scss";
+
+.album-track-list__ {
+  &table {
+    border-collapse: collapse;
+  }
+
+  &header {
+    color: #cccccc;
+  }
+
+  &header-SONG {
+    width: 55%;
+  }
+
+  &header-ARTIST {
+    width: 30%;
+  }
+
+  &header-TIME {
+    width: 15%;
+    
+    img {
+        fill: #cccccc;
+    }
+  }
+
+  &row {
+    td {
+      border-top: 1px solid #cccccc;
+    }
+  }
+}
