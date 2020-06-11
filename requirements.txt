@@ -2,4 +2,3 @@ django
 psycopg2
 djangorestframework
 django-cors-headers
-scrapy
