@@ -4,6 +4,14 @@ A webapp for streaming video game soundtracks, with features to support game-mus
 
 ## Developer Setup
 
+### Overview
+
+The backend is a django rest framework supplying application data for React and Typescript frontend.
+Postgresql for storing application data, while media (album thumbnails, songs) are stored in AWS S3.
+
+
+### Instructions
+
 database:
 
 `create database oststream`
