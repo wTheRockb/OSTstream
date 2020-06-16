@@ -1,3 +1,9 @@
+# OSTStream
+A webapp for streaming video game soundtracks, with features to support game-music and background listening.
+
+
+## Developer Setup
+
 database:
 
 `create database oststream`
@@ -9,8 +15,6 @@ alter role api with password 'api';
 python manage.py makemigrations;
 python manage.py migrate;
 ```
-
-
 
 
 todo:
