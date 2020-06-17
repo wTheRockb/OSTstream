@@ -16,7 +16,7 @@ const Navbar = () => {
     <Router>
       <div className="navbar__root">
         <div className="navbar__inner">
-          <ul>
+          <ul className="navbar__list">
             <li>
               <NavLink
                 to="/home"

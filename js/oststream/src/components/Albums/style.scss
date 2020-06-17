@@ -1,6 +1,8 @@
+@import "../../variables";
+
 .albums__root {
   background-color: #666666;
-  width: 80%;
+  width: $content-width;
   height: fit-content;
   min-height: 88%;
 }
