@@ -1,16 +1,18 @@
 import * as React from 'react';
 import './style.scss'
 import Navbar from './components/Navbar/Navbar';
-import RenderPlayer from './components/Player/player';
+import SongPlayer from './components/Player/player';
+import { SharedStateProvider } from './store';
 
-
- const App = () => {
+const App = () => {
   return (
-    <div>
-    <Navbar/>
-    <RenderPlayer/>
-   </div>
-   )
+    <SharedStateProvider>
+      <div className="root">
+        <Navbar />
+        <SongPlayer />
+      </div>
+    </SharedStateProvider>
+  )
 }
 
 export default App;
