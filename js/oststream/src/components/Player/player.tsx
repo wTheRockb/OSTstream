@@ -54,13 +54,14 @@ const AudioComponent: React.FunctionComponent<AudioComponentProps> = props => {
                             type='range'
                             min='0'
                             max='1'
-                            step='.05'
+                            step='.01'
                             value={volume}
                             onChange={setVolumeWrapper}
                             style={{ verticalAlign: 'bottom' }}
                         />
                     </span>
-                    {volume.toFixed(2)}
+                    {console.log(`volume is ${volume}`)}
+                    {volume * 100}
                 </label>
             </div>
             <button onClick={togglePlaying}>
