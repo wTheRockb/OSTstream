@@ -1,8 +1,12 @@
 import * as React from "react";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import "./style.scss";
 import { useSharedState } from '../../store';
 import ReactHowler from 'react-howler';
+// import { isNotUndefined } from 'src/util/typeGuard';
+import { useAudioPlayer } from 'src/providers/audioPlayerProvider';
+
+// TODO write a progress bar thing
 
 interface AudioComponentProps {
     songQueue: string[];
@@ -10,17 +14,17 @@ interface AudioComponentProps {
 }
 
 const AudioComponent: React.FunctionComponent<AudioComponentProps> = props => {
-    const [playing, setPlaying] = useState(false);
-    const [mute, setMute] = useState(false);
-    const [volume, setVolume] = useState(1.0);
-    const [playerRef, setPlayerRef] = useState();
-    const [duration, setDuration] = useState();
+    const progressBarRef = useRef<HTMLDivElement>(null);
+    const {
+      status,
+      duration,
+      togglePlayPause,
+      currentTime,
+      seek,
+    } = useAudioPlayer()!;
+    const playing = status === 'playing';
+    const position = (currentTime / duration) * 100 || 0;
 
-    const toggleMute = () => setMute(!mute);
-    const setDurationWrapper = () => setDuration(playerRef?.duration);
-    const togglePlaying = () => setPlaying(!playing);
-    const setPlayerRefRuntimeWrapper = (ref: any) => setPlayerRef(ref);
-    const setVolumeWrapper = (e: any) => setVolume(e.target.value)
     return (
         <div className="player__root">
             <ReactHowler
@@ -30,6 +34,8 @@ const AudioComponent: React.FunctionComponent<AudioComponentProps> = props => {
                 mute={mute}
                 ref={setPlayerRefRuntimeWrapper}
                 onLoad={setDurationWrapper}
+                onStop={handleOnStop}
+                onPlay={handleOnPlay}
             />
 
             <label>
@@ -42,7 +48,8 @@ const AudioComponent: React.FunctionComponent<AudioComponentProps> = props => {
             </label>
             <p>
                 {'Status: '}
-                {(playerRef?.seek !== undefined) ? playerRef?.seek : '0.00'}
+                {/* {!isNaN(seek) ? seek : '0.00'} */}
+                {count}
                 {' / '}
                 {duration !== undefined ? duration.toFixed(2) : 'NaN'}
             </p>
@@ -60,7 +67,7 @@ const AudioComponent: React.FunctionComponent<AudioComponentProps> = props => {
                             style={{ verticalAlign: 'bottom' }}
                         />
                     </span>
-                    {console.log(`volume is ${volume}`)}
+                    {/* TODO fix  console warning here, do NaN check for */}
                     {volume * 100}
                 </label>
             </div>
