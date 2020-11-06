@@ -6,7 +6,6 @@ import SongPlayer from './components/Player/player';
 
 const App = () => {
   
-
   return (
       <div className="root">
         <Navbar />

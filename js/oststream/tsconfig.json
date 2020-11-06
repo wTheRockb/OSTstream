@@ -4,7 +4,11 @@
     "outDir": "build/dist",
     "module": "commonjs",
     "target": "ES2015",
-//    "lib": ["es6", "dom"],
+    "lib": [
+      "ESNext.AsyncIterable",
+      "dom",
+      "es6",
+    ],
     "sourceMap": true,
     "declaration": false,
     "allowJs": true,
