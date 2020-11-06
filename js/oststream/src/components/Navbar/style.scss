@@ -3,7 +3,8 @@
 .navbar__ {
   &root {
     display: flex;
-    height: 100%;
+    height: inherit;
+    max-height: 90%;
   }
 
   &inner {
