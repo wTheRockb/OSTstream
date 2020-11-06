@@ -19,14 +19,15 @@ export const AlbumTrackList: React.FunctionComponent<AlbumTrackListProps> = (
 
   const getRestOfAlbum = (track: Track): Track[] => {
     const idx = props.tracks.findIndex(element => element == track);
-    return props.tracks.slice(idx);
+    return props.tracks.slice(idx + 1);
   }
 
 
   const playTrack = (track: Track) => {
     return () => {
-      const rest = getRestOfAlbum(track);
-      const toQueue = [track].concat(rest);
+      const toQueue = getRestOfAlbum(track);
+      // TODO refactor into 1 action. make that action also clear the queue
+      dispatch(CurrentlyPlayingActions.setCurrentlyPlaying({song: track}))
       dispatch(CurrentlyPlayingActions.addSongsToQueue({ songs: toQueue }))
     }
   }

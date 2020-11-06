@@ -1,22 +1,38 @@
 import * as React from "react";
+import { connect } from "react-redux";
 import "./style.scss";
 import AudioPlayer from 'react-h5-audio-player';
 import 'react-h5-audio-player/lib/styles.css';
+import { Track } from 'src/types/Track';
+import { OstStreamState } from 'src/types/Index';
 
-const SongPlayer: React.FunctionComponent<{}> = () => {
-    // TODO write a function to be passed as event when song ends (pop another song from queue and re-render subcomponent)
-    // maybe a function for each of the controls even
+interface SongPlayerProps {
+    readonly currentlyPlayedSong?: Track;
+}
+
+const SongPlayer: React.FunctionComponent<SongPlayerProps> = (props) => {
+    console.log(props)
 
     return (
-        <div className="player_root">
+        <div className="player__root">
+            <div className="player__song-display">
+               song title
+               {props.currentlyPlayedSong && props.currentlyPlayedSong.title}
+            </div>
+            <div className="player__audio">
             <AudioPlayer
                 autoPlay
                 src="http://example.com/audio.mp3"
                 onPlay={() => console.log("onPlay")}
                 // other props here
             />
+            </div>
         </div>
     )
 }
 
-export default SongPlayer;
+const mapStateToProps = (state: OstStreamState): SongPlayerProps => ({
+    currentlyPlayedSong: state.currentlyPlayingState.currentlyPlaying,
+})
+
+export default connect(mapStateToProps)(SongPlayer);

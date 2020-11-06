@@ -1,6 +1,6 @@
 import { OstStreamAction } from 'src/types/Index';
 import { Track } from 'src/types/Track';
-import { ADD_SONGS_TO_QUEUE } from './actions';
+import { ADD_SONGS_TO_QUEUE, SET_CURRENTLY_PLAYING } from './actions';
 
 export interface CurrentlyPlayingReducerState {
     readonly currentlyPlaying?: Track;
@@ -8,7 +8,7 @@ export interface CurrentlyPlayingReducerState {
 }
 
 export const currentlyPlayingInitialState: CurrentlyPlayingReducerState = {
-    queue: []
+    queue: [],
 }
 
 export const CurrentlyPlayingReducer = (
@@ -19,8 +19,14 @@ export const CurrentlyPlayingReducer = (
         case ADD_SONGS_TO_QUEUE:
             return {
                 ...state,
-                queue: state.queue.concat(action.payload.songs)
+                queue: state.queue.concat(action.payload.songs),
             }
+        case SET_CURRENTLY_PLAYING:
+            return {
+                ...state,
+                currentlyPlaying: action.payload.song,
+            }
+
         default:
             return state;
     }

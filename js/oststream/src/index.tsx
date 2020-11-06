@@ -20,6 +20,7 @@ const initialStoreState: OstStreamState = {
 const store = createStore<OstStreamState, OstStreamAction, {}, {}>(
   reducers,
   initialStoreState,
+  (window as any).__REDUX_DEVTOOLS_EXTENSION__ && (window as any).__REDUX_DEVTOOLS_EXTENSION__(),
 )
 
 ReactDOM.render(
