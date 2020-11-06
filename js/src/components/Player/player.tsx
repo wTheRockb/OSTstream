@@ -11,7 +11,6 @@ interface SongPlayerProps {
 }
 
 const SongPlayer: React.FunctionComponent<SongPlayerProps> = (props) => {
-    console.log(props)
 
     return (
         <div className="player__root">
