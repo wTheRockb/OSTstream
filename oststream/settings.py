@@ -25,7 +25,7 @@ SECRET_KEY = '#q24u=rg=j(aky4c5obwrpaj^ij@u%-tp3trk47ndm6yak9^(i'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['oststream.herokuapp.com']
 
 
 # Application definition
