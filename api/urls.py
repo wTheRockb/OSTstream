@@ -9,7 +9,7 @@ from api.models import GameSeries, Album, Track
 class TrackSerializer(serializers.ModelSerializer):
     class Meta:
         model = Track
-        fields = ['id', 'order', 'title', 'artist', 'album_id']
+        fields = ['id', 'order', 'title', 'artist', 'album_id', 'file_path', 'duration']
 
 
 class TrackViewSet(viewsets.ModelViewSet):
