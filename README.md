@@ -32,3 +32,8 @@ user auth tokens
 
 user auth tokens restricting data
 
+PSQL to heroku in powershell
+
+```
+psql -U vbosdfmmaagrcz  -f C:\Users\forre\Documents\GitHub\OSTstream\api\util\starter_songs.sql -h ec2-52-1-95-247.compute-1.amazonaws.com   d3m1dvahc40n0e
+```
