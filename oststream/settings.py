@@ -83,11 +83,11 @@ WSGI_APPLICATION = 'oststream.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'oststream',
-        'USER': 'api',
-        'HOST': '127.0.0.1',
-        'PORT': '5432',
-        'PASSWORD': 'api',
+        'NAME': os.environ.get('DATABASE_NAME'),
+        'USER': os.environ.get('DATABASE_USER'),
+        'HOST': os.environ.get('DATABASE_HOST'),
+        'PORT': os.environ.get('DATABASE_PORT'),
+        'PASSWORD': os.environ.get('DATABASE_PASSWORD'),
     }
 }
 
