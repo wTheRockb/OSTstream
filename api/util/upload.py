@@ -2,9 +2,14 @@
 import datetime
 import os
 
-from id3reader.id3reader import Reader
+
 import django
+from mutagen.easyid3 import EasyID3
+from mutagen.mp3 import MP3
+
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "oststream.settings")
 django.setup()
+
 from api.models import GameSeries, Album, Track
 
 
@@ -12,21 +17,34 @@ def upsert_album(path):
     print("album")
     print(path)
     user_series = input("What game series is this attributed to? Leave blank if none.\n")
-    game_series = GameSeries(title=user_series).save()
+
+    game_series = GameSeries(title=user_series)
+    game_series.save()
     album_image = None
+    album_title = None
     year_recorded = None
     for root, dirs, files in os.walk(path):
         for f in files:
             if ".mp3" in f:
-                id3 = Reader(os.path.join(root, f))
-                album_title = Reader.getValue(id3, "album")
-                year_recorded = Reader.getValue(id3, "Year recorded")
+                audio = MP3(os.path.join(root, f), ID3=EasyID3)
+                album_title = audio['album'][0]
+                year_recorded = audio['date'][0]
             if ".jpg" in f:
                 album_image = os.path.join(root, f)
 
     publish_date = datetime.datetime.strptime(year_recorded, '%Y') if year_recorded else None
 
-    a = Album(title=album_title, game_id=None, publish_date=publish_date,image_path=album_image, series=game_series)
+    print(album_title)
+    print(publish_date)
+    print(album_image)
+    print(game_series)
+    a = Album(
+        title=album_title,
+        publish_date=publish_date,
+        image_path=album_image,
+        series=None,
+    )
+
     a.save()
 
     for root, dirs, files in os.walk(path):
@@ -36,14 +54,25 @@ def upsert_album(path):
 
 
 def upsert_track(path, album):
-    id3 = Reader(path)
-    title = Reader.getValue(id3, "title")
-    artist = Reader.getValue(id3, "performer")
-    Track(title=title, artist=artist, album_id=album).save()
+    pass
+    audio = MP3(os.path.join(root, f), ID3=EasyID3)
+    title = audio['title']
+    artist = audio['artist']
+    track_num = audio['tracknumber']
+    duration = audio.info.length
+
+    Track(
+        title=title,
+        artist=artist,
+        album_id=album,
+        series=None,
+        track_number=track_num,
+        duration=duration,
+    ).save()
 
 
 if __name__ == '__main__':
-    root_path = "/Users/woodybutler/Dropbox/Public/OST/" ## todo parametrize this
+    root_path = "D:\Dropbox\Public\OST"  ## todo parametrize this
     for root, dirs, files in os.walk(root_path, topdown=False):
         if root == root_path:
             for f in dirs:

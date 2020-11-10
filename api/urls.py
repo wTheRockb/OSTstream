@@ -9,7 +9,7 @@ from api.models import GameSeries, Album, Track
 class TrackSerializer(serializers.ModelSerializer):
     class Meta:
         model = Track
-        fields = ['id', 'order', 'title', 'artist', 'album_id', 'file_path', 'duration']
+        fields = ['id', 'order', 'title', 'artist', 'album', 'file_path', 'duration']
 
 
 class TrackViewSet(viewsets.ModelViewSet):
@@ -31,7 +31,7 @@ class GameSeriesViewSet(viewsets.ModelViewSet):
 class AlbumSerializer(serializers.ModelSerializer):
     class Meta:
         model = Album
-        fields = ['id', 'title', 'game_id', 'publish_date', 'image_path', 'series']
+        fields = ['id', 'title', 'game', 'publish_date', 'image_path', 'series']
 
 
 class AlbumViewSet(viewsets.ModelViewSet):
@@ -43,7 +43,7 @@ class AlbumCloseUpSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Album
-        fields = ['id', 'title', 'game_id', 'publish_date', 'image_path', 'series', 'tracks']
+        fields = ['id', 'title', 'game', 'publish_date', 'image_path', 'series', 'tracks']
 
 class AlbumCloseUpViewSet(viewsets.ModelViewSet):
     queryset = Album.objects.all()

@@ -31,7 +31,6 @@ class Album(models.Model):
 
 class Track(models.Model):
     id = models.IntegerField(unique=True, primary_key=True)
-    order = models.IntegerField()
     title = models.CharField(max_length=200)
     artist = models.CharField(max_length=200)
     album = models.ForeignKey(Album, related_name='tracks', on_delete=models.CASCADE)
