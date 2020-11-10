@@ -4,6 +4,7 @@ import os
 
 
 import django
+import psycopg2
 from mutagen.easyid3 import EasyID3
 from mutagen.mp3 import MP3
 
@@ -19,7 +20,10 @@ def upsert_album(path):
     user_series = input("What game series is this attributed to? Leave blank if none.\n")
 
     game_series = GameSeries(title=user_series)
-    game_series.save()
+    try:
+        game_series.save()
+    except django.db.utils.IntegrityError:
+        pass
     album_image = None
     album_title = None
     year_recorded = None
@@ -44,8 +48,11 @@ def upsert_album(path):
         image_path=album_image,
         series=None,
     )
+    try:
+        a.save()
+    except django.db.utils.IntegrityError:
+        pass
 
-    a.save()
 
     for root, dirs, files in os.walk(path):
         for f in files:
@@ -54,22 +61,23 @@ def upsert_album(path):
 
 
 def upsert_track(path, album):
-    pass
-    audio = MP3(os.path.join(root, f), ID3=EasyID3)
+    audio = MP3(os.path.join(root, path), ID3=EasyID3)
     title = audio['title']
     artist = audio['artist']
-    track_num = audio['tracknumber']
+    track_num = audio['tracknumber'][0]
     duration = audio.info.length
 
-    Track(
+    t = Track(
         title=title,
         artist=artist,
-        album_id=album,
-        series=None,
+        album=album,
         track_number=track_num,
         duration=duration,
-    ).save()
-
+    )
+    try:
+        t.save()
+    except (django.db.utils.IntegrityError, ValueError):
+        pass
 
 if __name__ == '__main__':
     root_path = "D:\Dropbox\Public\OST"  ## todo parametrize this

@@ -12,7 +12,7 @@ class GameSeries(models.Model):
 
 
 class Game(models.Model):
-    id = models.IntegerField(unique=True, primary_key=True)
+    id = models.AutoField(unique=True, primary_key=True)
     title = models.CharField(max_length=200, unique=True)
     publisher = models.CharField(max_length=200, null=True)
     series = models.ForeignKey(GameSeries, related_name='games', on_delete=models.SET_NULL, null=True)
@@ -20,7 +20,7 @@ class Game(models.Model):
 
 
 class Album(models.Model):
-    id = models.IntegerField(unique=True, primary_key=True)
+    id = models.AutoField(unique=True, primary_key=True)
     title = models.CharField(max_length=200, unique=True)
     game = models.ForeignKey(Game, related_name='albums', on_delete=models.CASCADE, null=True)
     publish_date = models.DateTimeField('date published', null=True)
@@ -30,7 +30,7 @@ class Album(models.Model):
 
 
 class Track(models.Model):
-    id = models.IntegerField(unique=True, primary_key=True)
+    id = models.AutoField(unique=True, primary_key=True)
     title = models.CharField(max_length=200)
     artist = models.CharField(max_length=200)
     album = models.ForeignKey(Album, related_name='tracks', on_delete=models.CASCADE)
@@ -41,7 +41,7 @@ class Track(models.Model):
 
 
 class Playlist(models.Model):
-    id = models.IntegerField(unique=True, primary_key=True)
+    id = models.AutoField(unique=True, primary_key=True)
     title = models.CharField(max_length=200)
     songs = models.ManyToManyField(Track, through='PlaylistMembership')
     owner_id = models.ForeignKey(User, related_name='playlists', on_delete=models.CASCADE)
