@@ -22,7 +22,7 @@ class Game(models.Model):
 class Album(models.Model):
     id = models.IntegerField(unique=True, primary_key=True)
     title = models.CharField(max_length=200, unique=True)
-    game_id = models.ForeignKey(Game, related_name='albums', on_delete=models.CASCADE, null=True)
+    game = models.ForeignKey(Game, related_name='albums', on_delete=models.CASCADE, null=True)
     publish_date = models.DateTimeField('date published', null=True)
     # Consider making this slugfield https://docs.djangoproject.com/en/2.1/ref/models/fields/#slugfield
     image_path = models.CharField(max_length=200, null=True)
