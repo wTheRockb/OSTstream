@@ -14,7 +14,7 @@ def series_detail(request, series_id):
 
 def album_close_up(request, album_id):
     album_data = serializers.serialize("json",  [Album.objects.get(id=album_id)])
-    track_data = serializers.serialize("json",  Track.objects.filter(album_id=album_id).values())
+    track_data = serializers.serialize("json",  Track.objects.filter(album=album_id).values())
     payload = {
         "album": album_data,
         "tracks": track_data
