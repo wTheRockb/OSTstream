@@ -34,7 +34,7 @@ class Track(models.Model):
     order = models.IntegerField()
     title = models.CharField(max_length=200)
     artist = models.CharField(max_length=200)
-    album_id = models.ForeignKey(Album, related_name='tracks', on_delete=models.CASCADE)
+    album = models.ForeignKey(Album, related_name='tracks', on_delete=models.CASCADE)
     album_art_path = models.CharField(max_length=600, null=True)
     file_path = models.CharField(max_length=600, blank=True, null=True)
     duration = models.IntegerField(blank=True, null=True)
